@@ -1,12 +1,26 @@
 #include "cap.h"
 
+/**
+ * Function: get_active_window
+ * 
+ * The default (only) function run to grab the active window
+ * which defaults to the entire desktop if there is no active
+ * window.
+ *
+ * Code adapted from xfce4-screenshooter
+ * Copyright © 2008-2010 Jérôme Guelfucci <jeromeg@xfce.org>
+ *
+ * @param screen The screen on which to take the screenshot. 
+ * @param needs_unref Whether or not to free
+ * @param border True on window
+ * @return window The window to be captured
+ */
 static GdkWindow * 
-get_active_window (GdkScreen *screen,
-		   gboolean *needs_unref,
-		   gboolean *border) {
+get_active_window (GdkScreen * screen,
+		   gboolean * needs_unref,
+		   gboolean * border) {
 
   GdkWindow *window, *window2;
-  TRACE ("Get the active window");
   window = gdk_screen_get_active_window (screen);
 
   if (G_UNLIKELY (window == NULL)) {
@@ -36,7 +50,16 @@ get_active_window (GdkScreen *screen,
 }//get active window
 
 
-
+/**
+ * Function: find_wm_window
+ * 
+ * Only runs under certain boolean conditions.
+ *
+ * Code adapted from xfce4-screenshooter
+ * Copyright © 2008-2010 Jérôme Guelfucci <jeromeg@xfce.org>
+ * 
+ * @param xid 
+ */
 static Window
 find_wm_window (Window xid) {
 
@@ -59,7 +82,18 @@ find_wm_window (Window xid) {
 }//find wm window
 
 
-
+/**
+ * Function: get_window_screenshot
+ * 
+ * Draws the pixel buffer from the specified window.
+ *
+ * Code adapted from xfce4-screenshooter
+ * Copyright © 2008-2010 Jérôme Guelfucci <jeromeg@xfce.org>
+ *
+ * @param window The window to draw
+ * @param border Wether to add window border.
+ * @return screenshot The GdkPixbuf to be temporarily saved.
+ */
 static GdkPixbuf *
 get_window_screenshot (GdkWindow *window,
 			gboolean border) {
@@ -179,7 +213,14 @@ get_window_screenshot (GdkWindow *window,
 }//get window screenshot
 
 
-
+/**
+ * Function: takeScreenshot
+ *
+ * Sets up params and calls functions to get a screenshot,
+ * free pointers if nessesary.
+ *
+ * @return screenshot The final shot to be locally saved to a temp directory.
+ */
 GdkPixbuf *
 takeScreenshot () {
 

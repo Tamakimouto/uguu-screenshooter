@@ -1,10 +1,17 @@
 #include "uploader.h"
 
+/* Set up container for URL */
 typedef struct response {
   char * string;
   size_t length;
 } container;
 
+/**
+ * Function: getResponse 
+ *
+ * To be passed into curlOPT as the write function.
+ * Copies the return data from the curl call to the URL container.
+ */
 static size_t
 getResponse(void * data, size_t size, size_t nmemb, void * dest) {
   size_t sz = size * nmemb;
@@ -19,6 +26,7 @@ getResponse(void * data, size_t size, size_t nmemb, void * dest) {
   url->string[url->length] = 0;
 
   return sz;
+
 }//getResponse
 
 char * 
