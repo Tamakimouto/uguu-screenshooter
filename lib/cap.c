@@ -1,8 +1,26 @@
+/**
+ * uguu-screenshooter
+ * Copyright © 2015 Anthony Zheng <Tamakimouto@gmail.com>
+ *
+ * This program is free software: you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation, either version 3 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
+
 #include "cap.h"
 
 /**
  * Function: get_active_window
- * 
+ *
  * The default (only) function run to grab the active window
  * which defaults to the entire desktop if there is no active
  * window.
@@ -10,16 +28,16 @@
  * Code adapted from xfce4-screenshooter
  * Copyright © 2008-2010 Jérôme Guelfucci <jeromeg@xfce.org>
  *
- * @param screen The screen on which to take the screenshot. 
+ * @param screen The screen on which to take the screenshot.
  * @param needs_unref Whether or not to free
  * @param border True on window
  * @return window The window to be captured
  */
-static GdkWindow * 
+static GdkWindow *
 get_active_window (GdkScreen * screen,
                    gboolean * needs_unref,
                    gboolean * border) {
-	
+
     GdkWindow *window, *window2;
     window = gdk_screen_get_active_window (screen);
 
@@ -52,13 +70,13 @@ get_active_window (GdkScreen * screen,
 
 /**
  * Function: find_wm_window
- * 
+ *
  * Only runs under certain boolean conditions.
  *
  * Code adapted from xfce4-screenshooter
  * Copyright © 2008-2010 Jérôme Guelfucci <jeromeg@xfce.org>
- * 
- * @param xid 
+ *
+ * @param xid
  */
 static Window
 find_wm_window (Window xid) {
@@ -84,7 +102,7 @@ find_wm_window (Window xid) {
 
 /**
  * Function: get_window_screenshot
- * 
+ *
  * Draws the pixel buffer from the specified window.
  *
  * Code adapted from xfce4-screenshooter
@@ -229,7 +247,7 @@ get_window_screenshot (GdkWindow *window,
  */
 GdkPixbuf *
 takeScreenshot () {
-	
+
     GdkPixbuf *screenshot = NULL;
     GdkWindow *window = NULL;
     GdkScreen *screen;
@@ -238,7 +256,7 @@ takeScreenshot () {
 
     /* gdk_get_default_root_window () does not need to be unrefed,
      * needs_unref enables us to unref *window only if a non default
-     * window has been grabbed. 
+     * window has been grabbed.
      */
     gboolean needs_unref = TRUE;
 
@@ -251,7 +269,7 @@ takeScreenshot () {
 
     /* Wait 2 seconds */
     sleep (2);
-	
+
     /* Get the window/desktop we want to screenshot*/
     window = get_active_window (screen, &needs_unref, &border);
     screenshot = get_window_screenshot (window, border);
