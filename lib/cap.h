@@ -20,7 +20,7 @@
 #include <X11/extensions/shape.h>
 #include <gdk/gdkx.h>
 #include <unistd.h>
-#include <x11/xlib.h>
+#include <X11/Xlib.h>
 
 GdkPixbuf *
 takeScreenshot();

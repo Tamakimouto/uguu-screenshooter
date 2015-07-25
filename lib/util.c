@@ -53,7 +53,7 @@ tempSave(GdkPixbuf * screenshot) {
     srand(time(NULL));
     int i = rand() % 1000 + 100;
     gchar * name;
-    atoi(i, name, 10);
+    itoa(i, name, 10);
 
     gchar * saveUri = g_build_filename (tempUri, name, NULL);
     GFile * saveFile = g_file_new_for_uri (saveUri);
@@ -67,10 +67,10 @@ tempSave(GdkPixbuf * screenshot) {
             g_error_free (error);
         }
         g_free (savePath);
-        g_object_unref (save_file);
+        g_object_unref (saveFile);
         return NULL;
     } else {
-        g_object_unref (save_file);
+        g_object_unref (saveFile);
         return savePath;
     }
 

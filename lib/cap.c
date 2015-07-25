@@ -85,7 +85,7 @@ find_wm_window (Window xid) {
     unsigned int nchildren;
 
     do {
-        if (XQueryTree (GDK_DISPLAY (), xid, &root,
+        if (XQueryTree (gdk_x11_get_default_xdisplay(), xid, &root,
                         &parent, &children, &nchildren) == 0) {
 
             g_warning ("Couldn't find window manager window");
@@ -164,7 +164,7 @@ get_window_screenshot (GdkWindow *window,
         XRectangle *rectangles;
         GdkPixbuf *tmp;
         int rectangle_count, rectangle_order, i;
-        rectangles = XShapeGetRectangles (GDK_DISPLAY (),
+        rectangles = XShapeGetRectangles (gdk_x11_get_default_xdisplay(),
                                           GDK_WINDOW_XWINDOW (window),
                                           ShapeBounding,
                                           &rectangle_count,

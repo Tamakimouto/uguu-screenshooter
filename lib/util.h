@@ -22,4 +22,4 @@ void
 copyToClipBoard(char * url);
 
 gchar *
-tempSave(GdkPixBuf * screenshot);
+tempSave(GdkPixbuf * screenshot);

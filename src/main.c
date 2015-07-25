@@ -16,7 +16,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "uguulib.h"
+#include "../lib/uguulib.h"
 
 int main() {
 
