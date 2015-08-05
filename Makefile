@@ -50,19 +50,19 @@ $(MAIN): ./lib/global.o ./lib/uguulib.o $(OBJ)
 
 # cap object
 cap.o: $(CAP)
-	$(C) $(gOPT) $(OPT) -c $(CAP) -o cap.o $(gLIB)
+	gcc `pkg-config gtk+-3.0 --cflags` -g -c ./lib/cap.c ./lib/cap.h `pkg-config gtk+-3.0 --libs`
 
 # Uploader Object
 uploader.o: $(UPL)
-	$(C) $(gOPT) $(OPT) -c $(UPL) -o uploader.o $(gLIB)
+	$(C) $(gOPT) $(OPT) -c $(UPL) $(gLIB)
 
 # Util Object
 util.o: $(UTL)
-	$(C) $(gOPT) $(OPT) -c $(UTL) -o util.o $(gLIB)
+	$(C) $(gOPT) $(OPT) -c $(UTL) $(gLIB)
 
 # Main
 main.o:
-	$(C) $(gOPT) $(OPT) -c main.c -o main.o $(gLIB)
+	$(C) $(gOPT) $(OPT) -c main.c $(gLIB)
 
 # Remove Object files
 clean:
