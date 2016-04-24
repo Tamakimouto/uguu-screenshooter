@@ -1,4 +1,4 @@
-# uguu-screenshoote
+# uguu-screenshooter
 # Makefile
 
 
